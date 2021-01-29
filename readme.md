@@ -11,6 +11,10 @@
 
 Test api by navigating to http://localhost:3000/api/BCH/mainnet/block/tip
 
+Please visit [api docs](https://github.com/bitpay/bitcore/blob/master/packages/bitcore-node/docs/api-documentation.md)
+for more information
+
+
 ### to follow containers logs output
 `docker-compose logs -f`
 
