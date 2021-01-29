@@ -1,4 +1,4 @@
-# BCH + BITCORE API SERVER
+## BCH + BITCORE API SERVER
 
 ### clone the project and go to root directory
 `git clone https://github.com/just4hacking/bitcore_docker && cd bitcore_docker`
@@ -19,6 +19,7 @@ Test api by navigating to http://localhost:3000/api/BCH/mainnet/block/tip
 
 ### note
 Make sure to update volume path in docker-compose file
+
 `mkdir /data/blockchain -p && mkdir /data/db`
 
 And then change docker-compose.yml accordingly
