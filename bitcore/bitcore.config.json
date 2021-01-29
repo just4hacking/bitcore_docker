@@ -1,0 +1,23 @@
+{
+  "bitcoreNode": {
+    "modules": ["./bitcoin-cash"],
+    "chains": {
+      "BCH": {
+        "mainnet": {
+          "trustedPeers": [
+            {
+              "host": "bch-node",
+              "port": 30008
+            }
+          ],
+          "rpc": {
+            "host": "bch-node",
+            "port": 30009,
+            "username": "user",
+            "password": "password"
+          }
+        }
+      }
+    }
+  }
+}

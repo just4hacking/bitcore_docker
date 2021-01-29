@@ -1,0 +1,36 @@
+version: '3'
+services:
+  database:
+    image: mongo:3.4-jessie
+    volumes: 
+      - /Users/$USER/Desktop/bch_data/db:/data/db
+    networks:
+      - bch_network
+    
+  bitcore:
+    build:
+      context: ./bitcore
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=database
+      - CHAIN=BCH
+    env_file: .env
+    networks:
+      - bch_network
+    depends_on:
+      - bch-node
+      - database
+
+  bch-node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes: 
+      - /Users/$USER/Desktop/bch_data/blockchain:/data
+    networks:
+      - bch_network
+    
+networks:
+  bch_network:
