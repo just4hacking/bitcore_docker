@@ -4,6 +4,7 @@ services:
     image: mongo:3.4-jessie
     volumes: 
       - /Users/$USER/Desktop/bch_data/db:/data/db
+    restart: always
     networks:
       - bch_network
     
@@ -19,6 +20,7 @@ services:
     env_file: .env
     networks:
       - bch_network
+    restart: always
     depends_on:
       - bch-node
       - database
@@ -31,6 +33,7 @@ services:
       - /Users/$USER/Desktop/bch_data/blockchain:/data
     networks:
       - bch_network
+    restart: always
     
 networks:
   bch_network:
