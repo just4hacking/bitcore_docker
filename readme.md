@@ -31,3 +31,7 @@ volumes:
   - /blockchain:/data
 ```
 
+When you make changes to the project source files make sure 
+that you run
+
+`docker-compose build`
