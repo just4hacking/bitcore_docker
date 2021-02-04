@@ -1,0 +1,26 @@
+version: '3'
+services:
+  bitcore:
+    build:
+      context: ../litecore
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - ltc_network
+    restart: always
+    depends_on:
+      - ltc_node
+
+  ltc_node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes: 
+      - /Users/$USER/Desktop/data/ltc/blockchain:/data
+    networks:
+      - ltc_network
+    restart: always
+    
+networks:
+  ltc_network:

@@ -3,14 +3,14 @@ services:
   database:
     image: mongo:3.4-jessie
     volumes: 
-      - /Users/$USER/Desktop/bch_data/db:/data/db
+      - /Users/$USER/Desktop/data/bch/db:/data/db
     restart: always
     networks:
       - bch_network
     
   bitcore:
     build:
-      context: ./bitcore
+      context: ../../bitcore
       dockerfile: Dockerfile
     ports:
       - 3000:3000
@@ -22,15 +22,15 @@ services:
       - bch_network
     restart: always
     depends_on:
-      - bch-node
+      - bch_node
       - database
 
-  bch-node:
+  bch_node:
     build:
       context: ./node
       dockerfile: Dockerfile
     volumes: 
-      - /Users/$USER/Desktop/bch_data/blockchain:/data
+      - /Users/$USER/Desktop/data/bch/blockchain:/data
     networks:
       - bch_network
     restart: always

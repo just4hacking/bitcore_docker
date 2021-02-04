@@ -6,12 +6,12 @@
         "mainnet": {
           "trustedPeers": [
             {
-              "host": "bch-node",
+              "host": "bch_node",
               "port": 30008
             }
           ],
           "rpc": {
-            "host": "bch-node",
+            "host": "bch_node",
             "port": 30009,
             "username": "user",
             "password": "password"

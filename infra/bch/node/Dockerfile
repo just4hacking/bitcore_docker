@@ -13,13 +13,13 @@ ENV PATH /root/bch-unlimited-1.9.0.1/bin:$PATH
 # Create the data volume.
 VOLUME ["/data"]
 
-COPY bch.conf /root
+COPY node.conf /root
 
 WORKDIR /root/bch-unlimited-1.9.0.1/bin
 # Set the start command. This starts bchd with
 # flags to save the blockchain data and the
 # config on a docker volume.
-CMD ["bitcoind", "-conf=/root/bch.conf"]
+CMD ["bitcoind", "-conf=/root/node.conf"]
 
 # Document that the service listens on port 8333.
 EXPOSE 8333

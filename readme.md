@@ -1,7 +1,7 @@
 ## BCH + BITCORE API SERVER
 
 ### clone the project and go to root directory
-`git clone https://github.com/just4hacking/bitcore_docker && cd bitcore_docker`
+`git clone https://github.com/just4hacking/infra && cd infra/infra`
 
 ### build containers
 `docker-compose build`
