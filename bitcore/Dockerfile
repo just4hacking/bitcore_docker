@@ -1,12 +1,15 @@
 FROM node:10
 
+ARG BITCORE_REPO=https://github.com/bitpay/bitcore
+ARG BITCORE_BRANCH=master
+
 RUN apt-get update 
 
 WORKDIR /root
 
-RUN git clone https://github.com/bitpay/bitcore \
+RUN git clone ${BITCORE_REPO} bitcore \
     && cd bitcore \
-    && git checkout master
+    && git checkout ${BITCORE_BRANCH}
 
 WORKDIR /root/bitcore
 
