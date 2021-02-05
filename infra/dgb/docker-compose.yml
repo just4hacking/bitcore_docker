@@ -1,8 +1,8 @@
 version: '3'
 services:
-  digicore:
+  insight:
     build:
-      context: ./digicore
+      context: ./insight
       dockerfile: Dockerfile
     ports:
       - 3000:3000
@@ -12,6 +12,30 @@ services:
       - dgb_network
     environment: 
       - NODE_ENV=production
+      - INSIGHT_PORT=3000
+      - INSIGHT_NETWORK=livenet
+      - BITCOIND_USER=${BITCOIND_USER}
+      - BITCOIND_PASS=${BITCOIND_PASS}
+      - INSIGHT_PUBLIC_PATH=public
+      - BITCOIND_HOST=dgb_node
+      - BITCOIND_P2P_HOST=dgb_node
+      - BITCOIND_P2P_PORT=${BITCOIND_P2P_PORT}
+      - BITCOIND_PORT=${BITCOIND_PORT}
+    depends_on:
+      - dgb_node
+    env_file: .env
+    restart: always
+
+  dgb_node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes: 
+      - /Users/$USER/Desktop/data/dgb/blockchain:/data
+    networks:
+      - dgb_network
+    logging:
+      driver: none
     #restart: always
     
 networks:
