@@ -2,15 +2,15 @@
   "network": "livenet",
   "port": 3000,
   "services": [
-    "bitcoind",
-    "insight-lite-api",
+    "digibyted",
+    "insight-digibyte-api",
     "web"
   ],
   "servicesConfig": {
-    "bitcoind": {
+    "digibyted": {
       "spawn": {
         "datadir": "/data",
-        "exec": "/root/bitcore/node_modules/litecore-node/bin/litecoind"
+        "exec": "/root/bitcore/node_modules/digibyte-node/bin/digibyted"
       }
     }
   }

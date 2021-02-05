@@ -4,11 +4,11 @@ WORKDIR /root
 
 RUN apt-get update
 
-RUN mkdir litecore \
-    && cd litecore \
+RUN mkdir bitcore \
+    && cd bitcore \
     && npm install litecore-node@latest
 
-ENV PATH /root/litecore/node_modules/litecore-node/bin:$PATH
+ENV PATH /root/bitcore/node_modules/litecore-node/bin:$PATH
 
 RUN litecore-node create mynode \
     && cd mynode \

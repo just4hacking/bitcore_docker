@@ -1,0 +1,18 @@
+version: '3'
+services:
+  digicore:
+    build:
+      context: ./digicore
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes: 
+      - /Users/$USER/Desktop/data/dgb/blockchain:/data
+    networks:
+      - dgb_network
+    environment: 
+      - NODE_ENV=production
+    #restart: always
+    
+networks:
+  dgb_network:
