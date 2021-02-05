@@ -1,42 +1,18 @@
 version: '3'
 services:
-  database:
-    image: mongo:3.4-jessie
-    volumes: 
-      - /Users/$USER/Desktop/data/ltc/db:/data/db
-    restart: always
-    networks:
-      - ltc_network
-
-  bitcore:
+  litecore:
     build:
-      context: ../../bitcore
+      context: ./litecore
       dockerfile: Dockerfile
-      args:
-        BITCORE_REPO: https://github.com/nitsujlangston/bitcore --branch litecoinSupport
-        BITCORE_BRANCH: litecoinSupport
     ports:
       - 3000:3000
-    environment:
-      - DB_HOST=database
-      - CHAIN=LTC
-    #env_file: .env
-    networks:
-      - ltc_network
-    #restart: always
-    depends_on:
-      - ltc_node
-      - database
-
-  ltc_node:
-    build:
-      context: ./node
-      dockerfile: Dockerfile
     volumes: 
       - /Users/$USER/Desktop/data/ltc/blockchain:/data
     networks:
       - ltc_network
-    #restart: always
+    environment: 
+      - NODE_ENV=production
+    restart: always
     
 networks:
   ltc_network:

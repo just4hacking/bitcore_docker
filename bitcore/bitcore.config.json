@@ -1,6 +1,6 @@
 {
   "bitcoreNode": {
-    "modules": ["./bitcoin-cash", "./litecoin"],
+    "modules": ["./bitcoin-cash"],
     "chains": {
       "BCH": {
         "mainnet": {
@@ -23,12 +23,12 @@
           "chainSource": "p2p",
           "trustedPeers": [
             {
-              "host": "ltc-node",
+              "host": "ltc_node",
               "port": 40004
             }
           ],
           "rpc": {
-            "host": "ltc-node",
+            "host": "ltc_node",
             "port": 40005,
             "username": "user",
             "password": "password"

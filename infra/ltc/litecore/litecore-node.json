@@ -1,0 +1,17 @@
+{
+  "network": "livenet",
+  "port": 3000,
+  "services": [
+    "bitcoind",
+    "insight-lite-api",
+    "web"
+  ],
+  "servicesConfig": {
+    "bitcoind": {
+      "spawn": {
+        "datadir": "/data",
+        "exec": "/root/litecore/node_modules/litecore-node/bin/litecoind"
+      }
+    }
+  }
+}
