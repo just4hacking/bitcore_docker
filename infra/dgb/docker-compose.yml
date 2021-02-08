@@ -36,7 +36,7 @@ services:
       - dgb_network
     logging:
       driver: none
-    #restart: always
+    restart: always
     
 networks:
   dgb_network:

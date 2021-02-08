@@ -1,0 +1,30 @@
+version: '3'
+services:
+  dashcore:
+    build:
+      context: ./dashcore
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - dash_network
+    environment: 
+      - NODE_ENV=production
+    depends_on:
+      - dash_node
+    #restart: always
+    
+  dash_node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    volumes: 
+      - /Users/$USER/Desktop/data/dash/blockchain:/data
+    networks:
+      - dash_network
+    #logging:
+    #  driver: none
+    #restart: always
+    
+networks:
+  dash_network:

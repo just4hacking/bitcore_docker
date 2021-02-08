@@ -1,0 +1,22 @@
+{
+  "network": "testnet",
+  "port": 3000,
+  "services": [
+    "@dashevo/insight-api",
+    "@dashevo/insight-ui",
+    "dashd",
+    "web"
+  ],
+  "servicesConfig": {
+    "dashd": {
+      "connect": [{
+        "rpchost": "dash_node",
+        "rpcport": 30008,
+        "rpcuser": "user",
+        "rpcpassword": "password",
+        "zmqpubrawtx": "tcp://dash_node:28332",
+	      "zmqpubhashblock": "tcp://dash_node:28332"
+      }]
+    }
+  }
+}
