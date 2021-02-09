@@ -7,36 +7,33 @@ services:
     ports:
       - 3000:3000
     volumes: 
-      - /Users/$USER/Desktop/data/dgb/blockchain:/data
+      - /Users/$USER/Desktop/data/doge/blockchain:/data
     networks:
-      - dgb_network
+      - doge_network
     environment: 
       - NODE_ENV=production
-      - INSIGHT_PORT=3000
       - INSIGHT_NETWORK=livenet
       - BITCOIND_USER=${BITCOIND_USER}
       - BITCOIND_PASS=${BITCOIND_PASS}
       - INSIGHT_PUBLIC_PATH=public
-      - BITCOIND_HOST=dgb_node
-      - BITCOIND_P2P_HOST=dgb_node
+      - BITCOIND_HOST=doge_node
+      - BITCOIND_P2P_HOST=doge_node
       - BITCOIND_P2P_PORT=${BITCOIND_P2P_PORT}
       - BITCOIND_PORT=${BITCOIND_PORT}
     depends_on:
-      - dgb_node
+      - doge_node
     env_file: .env
     restart: always
 
-  dgb_node:
+  doge_node:
     build:
       context: ./node
       dockerfile: Dockerfile
     volumes: 
-      - /Users/$USER/Desktop/data/dgb/blockchain:/data
+      - /Users/$USER/Desktop/data/doge/blockchain:/data
     networks:
-      - dgb_network
-    #logging:
-    #  driver: none
+      - doge_network
     restart: always
     
 networks:
-  dgb_network:
+  doge_network:
