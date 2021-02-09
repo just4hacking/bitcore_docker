@@ -18,6 +18,14 @@ RUN dashcore-node create /root/mynode \
 
 COPY dashcore-node.json /root/mynode/dashcore-node.json
 
+RUN wget https://github.com/dashpay/dash/releases/download/v0.16.1.1/dashcore-0.16.1.1-x86_64-linux-gnu.tar.gz \
+    && tar -xvzf dashcore-0.16.1.1-x86_64-linux-gnu.tar.gz \
+    && rm dashcore-0.16.1.1-x86_64-linux-gnu.tar.gz
+
+ENV PATH /root/dashcore-0.16.1/bin:$PATH
+
+COPY node.conf /root
+
 WORKDIR /root/mynode
 CMD [ "dashcore-node", "start" ]
 
