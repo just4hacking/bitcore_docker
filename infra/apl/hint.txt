@@ -1,0 +1,3 @@
+check status 
+
+docker container exec -it apl_server_1 curl localhost:7876/apl?requestType=getState

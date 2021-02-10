@@ -1,0 +1,16 @@
+version: '3'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:7876
+    volumes: 
+      - /Users/$USER/Desktop/data/apl/blockchain:/data
+    networks:
+      - apl_network
+    restart: always
+    
+networks:
+  apl_network:

@@ -1,0 +1,132 @@
+limit_req_zone $binary_remote_addr zone=one:20m rate=3r/s;
+limit_conn_zone $binary_remote_addr zone=addr:20m;
+
+server {
+	listen 443;
+	listen [::]:443;
+
+	root /var/www/html;
+
+	index index.html;
+
+	server_name bitfiserver.ml;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	ssl on;
+  ssl_certificate /etc/letsencrypt/live/bitfiserver.ml/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/bitfiserver.ml/privkey.pem;
+
+	location /bch/ {
+		proxy_pass http://localhost:3000/api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+	}
+
+	location /api/ {
+    proxy_pass http://localhost:3000/api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+	location /dgb/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://localhost:3007/api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+	location /doge/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://localhost:3100/api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+	location /grs/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://localhost:3030/api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+	location /dash/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://localhost:3001/insight-api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+	location /apl/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+		proxy_pass http://localhost:7876/apl;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection 'upgrade';
+      proxy_set_header Host $host;
+      proxy_cache_bypass $http_upgrade;
+    }
+
+	location /ltc/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://localhost:3002/insight-lite-api/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+	location /pricer/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://localhost:3003/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+
+		#allow 94.19.253.179;
+		#deny  all;
+  }
+}
+
+server {
+  listen 80;
+  server_name bitfiserver.ml www.bitfiserver.ml;
+  return 301 https://$host$request_uri;
+}
