@@ -15,7 +15,7 @@ services:
   balancer:
     image: nginx:1.19-alpine
     ports:
-      - 8080:80
+      - 80:80
     volumes: 
       - ./templates:/etc/nginx/templates
     restart: always
