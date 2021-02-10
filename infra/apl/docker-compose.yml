@@ -4,13 +4,27 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    ports:
-      - 3000:7876
+    #ports:
+    #  - 3000:7876
     volumes: 
       - /Users/$USER/Desktop/data/apl/blockchain:/data
     networks:
       - apl_network
     restart: always
-    
+  
+  balancer:
+    image: nginx:1.19-alpine
+    ports:
+      - 8080:80
+    volumes: 
+      - ./templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      - NGINX_HOST=_
+      - APL_SERVER=server
+      - APL_PORT=7876
+    networks: 
+      - apl_network
+
 networks:
   apl_network:

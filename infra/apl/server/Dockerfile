@@ -7,8 +7,6 @@ RUN apt update -y \
     && cd Apollo \
     && ./mvnw clean install
 
-RUN wget https://github.com/ApolloFoundation/Apollo/releases/download/1.47.7/ApolloWallet-linux-1.47.7.sh
-
 
 RUN unzip /root/Apollo/apl-exec/target/apollo-blockchain-1.47.10-NoOS-NoArch.zip -d /root/
 

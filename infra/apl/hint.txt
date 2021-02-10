@@ -1,3 +1,6 @@
 check status 
 
 docker container exec -it apl_server_1 curl localhost:7876/apl?requestType=getState
+
+Or just try (via nginx proxy)
+curl localhost:8080/apl?requestType=getState
