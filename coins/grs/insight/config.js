@@ -92,7 +92,7 @@ if (!fs.existsSync(db)) {
 
 module.exports = {
   enableRatelimiter: enableRatelimiter,
-  ratelimiter: require('../plugins/config-ratelimiter.js'),
+  ratelimiter: require('../plugins/config-ratelimiter.js.js'),
   enableEmailstore: enableEmailstore,
   enableCurrencyRates: enableCurrencyRates,
   currencyrates: require('../plugins/config-currencyrates'),
