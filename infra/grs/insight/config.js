@@ -70,11 +70,11 @@ var ignoreCache = process.env.INSIGHT_IGNORE_CACHE || 0;
 var bitcoindConf = {
   protocol: process.env.BITCOIND_PROTO || 'http',
   user: process.env.BITCOIND_USER || 'user',
-  pass: process.env.BITCOIND_PASS || 'pass',
-  host: process.env.BITCOIND_HOST || '127.0.0.1',
+  pass: process.env.BITCOIND_PASS || 'password',
+  host: process.env.BITCOIND_HOST || 'grs_node',
   port: process.env.BITCOIND_PORT || b_port,
   p2pPort: process.env.BITCOIND_P2P_PORT || p2p_port,
-  p2pHost: process.env.BITCOIND_P2P_HOST || process.env.BITCOIND_HOST || '127.0.0.1',
+  p2pHost: process.env.BITCOIND_P2P_HOST || process.env.BITCOIND_HOST || 'grs_node',
   dataDir: dataDir,
   // DO NOT CHANGE THIS!
   disableAgent: true

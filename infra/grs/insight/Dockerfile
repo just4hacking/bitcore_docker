@@ -11,6 +11,9 @@ RUN apt update -y \
 ENV INSIGHT_PORT 3000
 ENV INSIGHT_FORCE_RPC_SYNC 1
 
+#COPY config.js /root/insight/node_modules/insight-bitcore-api/config/config.js
+
 WORKDIR /root/insight
 
+#CMD [ "sleep", "1d" ]
 CMD [ "node", "./node_modules/.bin/insight-bitcore-api" ]

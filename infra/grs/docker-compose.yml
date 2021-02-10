@@ -12,7 +12,7 @@ services:
       - grs_network
     environment: 
       - NODE_ENV=production
-      - INSIGHT_NETWORK=livenet
+      - INSIGHT_NETWORK=testnet
       - BITCOIND_USER=${BITCOIND_USER}
       - BITCOIND_PASS=${BITCOIND_PASS}
       - INSIGHT_PUBLIC_PATH=public
