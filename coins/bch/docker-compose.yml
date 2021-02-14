@@ -19,6 +19,7 @@ services:
       - CHAIN=BCH
     networks:
       - bch_network
+      - nginx_network
     restart: always
     depends_on:
       - bch_node
@@ -36,3 +37,4 @@ services:
     
 networks:
   bch_network:
+  nginx_network:

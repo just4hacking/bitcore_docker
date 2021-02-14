@@ -10,9 +10,11 @@ services:
       - ${LTC_BLOCKCHAIN_PATH}:/data
     networks:
       - ltc_network
+      - nginx_network
     environment: 
       - NODE_ENV=production
     restart: always
     
 networks:
   ltc_network:
+  nginx_network:

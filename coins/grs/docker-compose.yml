@@ -20,6 +20,7 @@ services:
       - BITCOIND_PORT=30009
     depends_on:
       - grs_node
+      - nginx_network
     restart: always
 
   grs_node:
@@ -34,3 +35,4 @@ services:
     
 networks:
   grs_network:
+  nginx_network:

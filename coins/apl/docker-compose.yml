@@ -10,21 +10,9 @@ services:
       - ${APL_BLOCKCHAIN_PATH}:/data
     networks:
       - apl_network
+      - nginx_network
     restart: always
-  
-  apl_balancer:
-    image: nginx:1.19-alpine
-    ports:
-      - 80:80
-    volumes: 
-      - ./templates:/etc/nginx/templates
-    restart: always
-    environment: 
-      - NGINX_HOST=_
-      - APL_SERVER=apl_server
-      - APL_PORT=7876
-    networks: 
-      - apl_network
 
 networks:
   apl_network:
+  nginx_network:

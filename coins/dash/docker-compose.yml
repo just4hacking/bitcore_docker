@@ -10,9 +10,11 @@ services:
       - ${DASH_API_PORT}:3000
     networks:
       - dash_network
+      - nginx_network
     environment: 
       - NODE_ENV=production
     restart: always
     
 networks:
   dash_network:
+  nginx_network:

@@ -20,6 +20,7 @@ services:
       - BITCOIND_PORT=30009
     depends_on:
       - doge_node
+      - nginx_network
     restart: always
 
   doge_node:
@@ -34,3 +35,4 @@ services:
     
 networks:
   doge_network:
+  nginx_network:

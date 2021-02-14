@@ -9,3 +9,15 @@ services:
     restart: always
     environment: 
       - NGINX_HOST=_
+      - APL_SERVER=apl_server
+      - APL_PORT=7876
+    restart: always
+    env_file: 
+      - ../../.env
+    networks: 
+      - nginx_network
+
+networks:
+  nginx_network:
+
+    
