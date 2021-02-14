@@ -4,10 +4,10 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    #ports:
-    #  - 3000:7876
+    ports:
+      - ${APL_API_PORT}:7876
     volumes: 
-      - /Users/$USER/Desktop/data/apl/blockchain:/data
+      - ${APL_BLOCKCHAIN_PATH}:/data
     networks:
       - apl_network
     restart: always

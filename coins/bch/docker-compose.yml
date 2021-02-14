@@ -3,7 +3,7 @@ services:
   bch_database:
     image: mongo:3.4-jessie
     volumes: 
-      - /Users/$USER/Desktop/data/bch/db:/data/db
+      - ${BCH_DB_PATH}:/data/db
     restart: always
     networks:
       - bch_network
@@ -13,11 +13,10 @@ services:
       context: ../../bitcore
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - ${BCH_API_PORT}:3000
     environment:
       - DB_HOST=bch_database
       - CHAIN=BCH
-    env_file: .env
     networks:
       - bch_network
     restart: always
@@ -30,7 +29,7 @@ services:
       context: ./node
       dockerfile: Dockerfile
     volumes: 
-      - /Users/$USER/Desktop/data/bch/blockchain:/data
+      - ${BCH_BLOCKCHAIN_PATH}:/data
     networks:
       - bch_network
     restart: always

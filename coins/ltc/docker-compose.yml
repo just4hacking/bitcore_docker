@@ -5,9 +5,9 @@ services:
       context: ./litecore
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - ${LTC_API_PORT}:3000
     volumes: 
-      - /Users/$USER/Desktop/data/ltc/blockchain:/data
+      - ${LTC_BLOCKCHAIN_PATH}:/data
     networks:
       - ltc_network
     environment: 

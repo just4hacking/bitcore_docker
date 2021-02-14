@@ -5,24 +5,21 @@ services:
       context: ./insight
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
-    volumes: 
-      - /Users/$USER/Desktop/data/grs/blockchain:/data
+      - ${GRS_API_PORT}:3000
     networks:
       - grs_network
     environment: 
       - NODE_ENV=production
       - INSIGHT_NETWORK=testnet
-      - BITCOIND_USER=${BITCOIND_USER}
-      - BITCOIND_PASS=${BITCOIND_PASS}
+      - BITCOIND_USER=user
+      - BITCOIND_PASS=password
       - INSIGHT_PUBLIC_PATH=public
       - BITCOIND_HOST=grs_node
       - BITCOIND_P2P_HOST=grs_node
-      - BITCOIND_P2P_PORT=${BITCOIND_P2P_PORT}
-      - BITCOIND_PORT=${BITCOIND_PORT}
+      - BITCOIND_P2P_PORT=30008
+      - BITCOIND_PORT=30009
     depends_on:
       - grs_node
-    env_file: .env
     restart: always
 
   grs_node:
@@ -30,7 +27,7 @@ services:
       context: ./node
       dockerfile: Dockerfile
     volumes: 
-      - /Users/$USER/Desktop/data/grs/blockchain:/data
+      - ${GRS_BLOCKCHAIN_PATH}:/data
     networks:
       - grs_network
     restart: always

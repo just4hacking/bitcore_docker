@@ -5,9 +5,9 @@ services:
       context: ./dashcore
       dockerfile: Dockerfile
     volumes: 
-      - /Users/$USER/Desktop/data/dash/blockchain:/data
+      - ${DASH_BLOCKCHAIN_PATH}:/data
     ports:
-      - 3000:3000
+      - ${DASH_API_PORT}:3000
     networks:
       - dash_network
     environment: 
