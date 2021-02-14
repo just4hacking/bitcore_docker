@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server:
+  apl_server:
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
       - apl_network
     restart: always
   
-  balancer:
+  apl_balancer:
     image: nginx:1.19-alpine
     ports:
       - 80:80
@@ -21,7 +21,7 @@ services:
     restart: always
     environment: 
       - NGINX_HOST=_
-      - APL_SERVER=server
+      - APL_SERVER=apl_server
       - APL_PORT=7876
     networks: 
       - apl_network

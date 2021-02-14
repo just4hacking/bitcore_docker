@@ -1,0 +1,17 @@
+###APOLLO
+http://localhost:8080/apl?requestType=getState
+
+###DASH
+http://localhost:3000/insight-api/sync
+
+###DIGIBYTE
+http://localhost:3000/api/sync
+
+###DOGECOIN
+http://localhost:3000/api/sync
+
+###GROESTLCOIN
+http://localhost:3000/api/sync
+
+###LITECOIN
+http://localhost:3000/insight-lite-api/sync

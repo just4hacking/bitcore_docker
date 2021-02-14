@@ -7,7 +7,6 @@ RUN apt update -y \
     && cd Apollo \
     && ./mvnw clean install
 
-
 RUN unzip /root/Apollo/apl-exec/target/apollo-blockchain-1.47.10-NoOS-NoArch.zip -d /root/
 
 COPY chains.json /root/config/chains.json

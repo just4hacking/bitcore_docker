@@ -1,6 +1,6 @@
 version: '3'
 services:
-  insight:
+  grs_insight:
     build:
       context: ./insight
       dockerfile: Dockerfile
@@ -23,7 +23,7 @@ services:
     depends_on:
       - grs_node
     env_file: .env
-    #restart: always
+    restart: always
 
   grs_node:
     build:
@@ -33,7 +33,7 @@ services:
       - /Users/$USER/Desktop/data/grs/blockchain:/data
     networks:
       - grs_network
-    #restart: always
+    restart: always
     
 networks:
   grs_network:

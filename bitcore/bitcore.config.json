@@ -17,23 +17,6 @@
             "password": "password"
           }
         }
-      },
-      "LTC": {
-        "mainnet": {
-          "chainSource": "p2p",
-          "trustedPeers": [
-            {
-              "host": "ltc_node",
-              "port": 40004
-            }
-          ],
-          "rpc": {
-            "host": "ltc_node",
-            "port": 40005,
-            "username": "user",
-            "password": "password"
-          }
-        }
       }
     }
   }

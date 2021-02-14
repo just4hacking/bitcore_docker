@@ -1,6 +1,6 @@
 version: '3'
 services:
-  insight:
+  doge_insight:
     build:
       context: ./insight
       dockerfile: Dockerfile
