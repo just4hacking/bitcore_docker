@@ -1,17 +1,20 @@
 ###APOLLO
-http://localhost:8080/apl?requestType=getState
+http://localhost:3007/apl?requestType=getState
+
+###BITCOIN CASH
+http://localhost:3006/api/BCH/mainnet/block/tip
 
 ###DASH
-http://localhost:3000/insight-api/sync
+http://localhost:3005/insight-api/sync
 
 ###DIGIBYTE
-http://localhost:3000/api/sync
+http://localhost:3004/api/sync
 
 ###DOGECOIN
-http://localhost:3000/api/sync
+http://localhost:3003/api/sync
 
 ###GROESTLCOIN
-http://localhost:3000/api/sync
+http://localhost:3002/api/sync
 
 ###LITECOIN
 http://localhost:3001/insight-lite-api/sync

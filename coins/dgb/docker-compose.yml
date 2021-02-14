@@ -21,7 +21,6 @@ services:
       - BITCOIND_PORT=30009
     depends_on:
       - dgb_node
-    env_file: .env
     restart: always
 
   dgb_node:
