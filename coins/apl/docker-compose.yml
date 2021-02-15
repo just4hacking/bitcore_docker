@@ -1,11 +1,12 @@
 version: '3'
 services:
   apl_server:
+    container_name: ${APL_CONTAINER_NAME}
     build:
-      context: ./server
+      context: ${PWD}/coins/apl/server
       dockerfile: Dockerfile
     ports:
-      - ${APL_API_PORT}:7876
+      - ${APL_API_PORT}:${APL_API_PORT}
     volumes: 
       - ${APL_BLOCKCHAIN_PATH}:/data
     networks:

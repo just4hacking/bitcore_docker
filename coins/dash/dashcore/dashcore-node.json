@@ -1,6 +1,6 @@
 {
   "network": "testnet",
-  "port": 3000,
+  "port": "${DASH_API_PORT}",
   "services": [
     "@dashevo/insight-api",
     "@dashevo/insight-ui",

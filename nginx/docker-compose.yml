@@ -5,15 +5,13 @@ services:
     ports:
       - 8080:80
     volumes: 
-      - ./templates:/etc/nginx/templates
+      - ${PWD}/nginx/templates:/etc/nginx/templates
     restart: always
     environment: 
       - NGINX_HOST=_
-      - APL_SERVER=apl_server
-      - APL_PORT=7876
     restart: always
-    env_file: 
-      - ../../.env
+    env_file:
+      - ${PWD}/.env
     networks: 
       - nginx_network
 

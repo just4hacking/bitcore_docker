@@ -1,13 +1,16 @@
 version: '3'
 services:
   dashcore:
+    container_name: ${DASH_CONTAINER_NAME}
     build:
-      context: ./dashcore
+      context: ${PWD}/coins/dash/dashcore
       dockerfile: Dockerfile
+      args:
+        DASH_API_PORT: ${DASH_API_PORT}
     volumes: 
       - ${DASH_BLOCKCHAIN_PATH}:/data
     ports:
-      - ${DASH_API_PORT}:3000
+      - ${DASH_API_PORT}:${DASH_API_PORT}
     networks:
       - dash_network
       - nginx_network

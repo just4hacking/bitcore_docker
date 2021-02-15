@@ -13,12 +13,24 @@ server {
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
 	}
-
+  
   location /apl {
 		#limit_conn addr 10;
     #limit_req zone=one burst=3;
 
-		proxy_pass http://${APL_SERVER}:${APL_PORT}/apl;
+		proxy_pass http://${APL_CONTAINER_NAME}:${APL_API_PORT}/apl;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+
+  location /dash/ {
+		#limit_conn addr 10;
+    #limit_req zone=one burst=3;
+
+    proxy_pass http://${DASH_CONTAINER_NAME}:${DASH_API_PORT}/insight-api/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
@@ -46,15 +58,6 @@ server {
 
 	location /grs/ {
     proxy_pass http://localhost:3030/insight-api/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-	location /dash/ {
-    proxy_pass http://localhost:3001/insight-api/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
