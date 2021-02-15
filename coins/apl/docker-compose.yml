@@ -5,6 +5,8 @@ services:
     build:
       context: ${PWD}/coins/apl/server
       dockerfile: Dockerfile
+      args: 
+        APL_API_PORT: ${APL_API_PORT}
     ports:
       - ${APL_API_PORT}:${APL_API_PORT}
     volumes: 

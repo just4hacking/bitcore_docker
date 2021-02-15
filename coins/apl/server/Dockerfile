@@ -14,6 +14,11 @@ COPY apl-blockchain.properties /root/config/apl-blockchain.properties
 
 ENV PATH /root/ApolloWallet/apollo-blockchain/bin:$PATH
 
+ARG APL_API_PORT
+ENV APL_API_PORT ${APL_API_PORT}
+
+RUN sed -i -e 's/${APL_API_PORT}/'"${APL_API_PORT}"'/g' /root/config/apl-blockchain.properties
+
 VOLUME ["/data"]
 
 CMD [ "apl-run.sh", "--log-dir", "/data", "--db-dir", "/data", "--config-dir", "/root/config" ]
