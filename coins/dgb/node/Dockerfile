@@ -15,6 +15,8 @@ VOLUME ["/data"]
 
 COPY node.conf /root
 
+ENV INSIGHT_FORCE_RPC_SYNC 1
+
 WORKDIR /root/digibyte-7.17.2/bin
 # Set the start command. This starts bchd with
 # flags to save the blockchain data and the
