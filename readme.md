@@ -10,7 +10,9 @@
 `docker-compose -f coins/[coin_name]/docker-compose.yml build -d`
 
 ### run multiple nodes
-`docker-compose -f coins/bch/docker-compose.yml -f coins/ltc docker-compose.yml run -d`
+`docker-compose -f coins/bch/docker-compose.yml -f coins/ltc/docker-compose.yml run -d`
+
+you can run as many nodes as you want like this
 
 ### how to test
 check out [request.http](https://github.com/just4hacking/infra/blob/master/request.http)
