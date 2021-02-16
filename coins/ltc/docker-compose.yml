@@ -2,19 +2,35 @@ version: '3'
 services:
   litecore:
     build:
-      context: ./litecore
+      context: ${PWD}/coins/ltc/litecore
       dockerfile: Dockerfile
-    ports:
-      - ${LTC_API_PORT}:3000
     volumes: 
-      - ${LTC_BLOCKCHAIN_PATH}:/data
+      - ${DATA_DIR}/ltc/blockchain:/data
     networks:
       - ltc_network
-      - nginx_network
     environment: 
       - NODE_ENV=production
     restart: always
     
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - ${NGINX_PORT}:80
+    volumes: 
+      - ${PWD}/nginx/templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      NGINX_HOST: _
+      LTC_LOCATION: |-
+        #
+        location /ltc/ {
+          proxy_pass http://litecore:3000/insight-lite-api/;
+        }
+    restart: always
+    env_file:
+      - ${PWD}/.env
+    networks: 
+      - ltc_network
+
 networks:
   ltc_network:
-  nginx_network:

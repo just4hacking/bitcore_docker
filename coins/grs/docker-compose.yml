@@ -2,10 +2,8 @@ version: '3'
 services:
   grs_insight:
     build:
-      context: ./insight
+      context: ${PWD}/coins/grs/insight
       dockerfile: Dockerfile
-    ports:
-      - ${GRS_API_PORT}:3000
     networks:
       - grs_network
     environment: 
@@ -20,19 +18,37 @@ services:
       - BITCOIND_PORT=30009
     depends_on:
       - grs_node
-      - nginx_network
     restart: always
 
   grs_node:
     build:
-      context: ./node
+      context: ${PWD}/coins/grs/node
       dockerfile: Dockerfile
     volumes: 
-      - ${GRS_BLOCKCHAIN_PATH}:/data
+      - ${DATA_DIR}/grs/blockchain:/data
     networks:
       - grs_network
     restart: always
     
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - ${NGINX_PORT}:80
+    volumes: 
+      - ${PWD}/nginx/templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      NGINX_HOST: _
+      GRS_LOCATION: |-
+        #
+        location /grs/ {
+          proxy_pass http://grs_insight:3000/api/;
+        }
+    restart: always
+    env_file:
+      - ${PWD}/.env
+    networks: 
+      - grs_network
+
 networks:
   grs_network:
-  nginx_network:

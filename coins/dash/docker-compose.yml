@@ -1,23 +1,36 @@
 version: '3'
 services:
   dashcore:
-    container_name: ${DASH_CONTAINER_NAME}
     build:
       context: ${PWD}/coins/dash/dashcore
       dockerfile: Dockerfile
-      args:
-        DASH_API_PORT: ${DASH_API_PORT}
     volumes: 
-      - ${DASH_BLOCKCHAIN_PATH}:/data
-    ports:
-      - ${DASH_API_PORT}:${DASH_API_PORT}
+      - ${DATA_DIR}/dash/blockchain:/data
     networks:
       - dash_network
-      - nginx_network
     environment: 
       - NODE_ENV=production
     restart: always
-    
+  
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - ${NGINX_PORT}:80
+    volumes: 
+      - ${PWD}/nginx/templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      NGINX_HOST: _
+      DASH_LOCATION: |-
+        #
+        location /dash/ {
+          proxy_pass http://dashcore:3000/insight-api/;
+        }
+    restart: always
+    env_file:
+      - ${PWD}/.env
+    networks: 
+      - dash_network
+
 networks:
   dash_network:
-  nginx_network:

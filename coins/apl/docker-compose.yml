@@ -1,21 +1,36 @@
 version: '3'
 services:
   apl_server:
-    container_name: ${APL_CONTAINER_NAME}
     build:
       context: ${PWD}/coins/apl/server
       dockerfile: Dockerfile
       args: 
-        APL_API_PORT: ${APL_API_PORT}
-    ports:
-      - ${APL_API_PORT}:${APL_API_PORT}
+        APL_API_PORT: 3000
     volumes: 
-      - ${APL_BLOCKCHAIN_PATH}:/data
+      - ${DATA_DIR}/apl/blockchain:/data
     networks:
       - apl_network
-      - nginx_network
     restart: always
+
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - ${NGINX_PORT}:80
+    volumes: 
+      - ${PWD}/nginx/templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      NGINX_HOST: _
+      APL_LOCATION: |-
+        #
+        location /apl/ {
+          proxy_pass http://apl_server:3000/apl;
+        }
+    restart: always
+    env_file:
+      - ${PWD}/.env
+    networks: 
+      - apl_network
 
 networks:
   apl_network:
-  nginx_network:

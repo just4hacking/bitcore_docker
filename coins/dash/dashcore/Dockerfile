@@ -27,7 +27,7 @@ ARG DASH_API_PORT
 ENV PATH /root/dashcore-0.16.1/bin:$PATH
 ENV DASH_API_PORT ${DASH_API_PORT}
 
-RUN sed -i -e 's/${DASH_API_PORT}/'"${DASH_API_PORT}"'/g' /root/mynode/dashcore-node.json
+#RUN sed -i -e 's/${DASH_API_PORT}/'"${DASH_API_PORT}"'/g' /root/mynode/dashcore-node.json
 
 COPY node.conf /root
 

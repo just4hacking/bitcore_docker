@@ -1,6 +1,7 @@
 {
   "bitcoreNode": {
     "modules": ["./bitcoin-cash"],
+    "port": "${BITCORE_API_PORT}",
     "chains": {
       "BCH": {
         "mainnet": {

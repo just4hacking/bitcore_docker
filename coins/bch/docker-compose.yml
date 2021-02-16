@@ -3,23 +3,22 @@ services:
   bch_database:
     image: mongo:3.4-jessie
     volumes: 
-      - ${BCH_DB_PATH}:/data/db
+      - ${DATA_DIR}/bch/db:/data/db
     restart: always
     networks:
       - bch_network
     
   bch_bitcore:
     build:
-      context: ../../bitcore
+      context: ${PWD}/bitcore
       dockerfile: Dockerfile
-    ports:
-      - ${BCH_API_PORT}:3000
+      args: 
+        BITCORE_API_PORT: 3000
     environment:
       - DB_HOST=bch_database
       - CHAIN=BCH
     networks:
       - bch_network
-      - nginx_network
     restart: always
     depends_on:
       - bch_node
@@ -27,14 +26,33 @@ services:
 
   bch_node:
     build:
-      context: ./node
+      context: ${PWD}/coins/bch/node
       dockerfile: Dockerfile
     volumes: 
-      - ${BCH_BLOCKCHAIN_PATH}:/data
+      - ${DATA_DIR}/bch/blockchain:/data
     networks:
       - bch_network
     restart: always
     
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - ${NGINX_PORT}:80
+    volumes: 
+      - ${PWD}/nginx/templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      NGINX_HOST: _
+      BCH_LOCATION: |-
+        #
+        location /bch/ {
+          proxy_pass http://bch_bitcore:3000/api/BCH/;
+        }
+    restart: always
+    env_file:
+      - ${PWD}/.env
+    networks: 
+      - bch_network
+
 networks:
   bch_network:
-  nginx_network:

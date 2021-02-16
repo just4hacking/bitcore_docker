@@ -21,5 +21,9 @@ COPY bitcore.config.json /root/bitcore
 
 CMD ["npm", "run", "node"]
 
-EXPOSE 8100
-EXPOSE 3000
+ARG BITCORE_API_PORT
+ENV BITCORE_API_PORT ${BITCORE_API_PORT}
+
+RUN sed -i -e 's/${BITCORE_API_PORT}/'"${BITCORE_API_PORT}"'/g' /root/bitcore/bitcore.config.json
+
+EXPOSE ${BITCORE_API_PORT}

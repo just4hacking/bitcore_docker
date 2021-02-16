@@ -2,13 +2,10 @@ version: '3'
 services:
   dgb_insight:
     build:
-      context: ./insight
+      context: ${PWD}/coins/dgb/insight
       dockerfile: Dockerfile
-    ports:
-      - ${DGB_API_PORT}:3000
     networks:
       - dgb_network
-      - nginx_network
     environment: 
       - NODE_ENV=production
       - INSIGHT_PORT=3000
@@ -26,14 +23,33 @@ services:
 
   dgb_node:
     build:
-      context: ./node
+      context: ${PWD}/coins/dgb/node
       dockerfile: Dockerfile
     volumes: 
-      - ${DGB_BLOCKCHAIN_PATH}:/data
+      - ${DATA_DIR}/dgb/blockchain:/data
     networks:
       - dgb_network
     restart: always
     
+  nginx:
+    image: nginx:1.19-alpine
+    ports:
+      - ${NGINX_PORT}:80
+    volumes: 
+      - ${PWD}/nginx/templates:/etc/nginx/templates
+    restart: always
+    environment: 
+      NGINX_HOST: _
+      DGB_LOCATION: |-
+        #
+        location /dgb/ {
+          proxy_pass http://dgb_insight:3000/api/;
+        }
+    restart: always
+    env_file:
+      - ${PWD}/.env
+    networks: 
+      - dgb_network
+
 networks:
   dgb_network:
-  nginx_network:

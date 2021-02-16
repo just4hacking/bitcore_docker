@@ -7,79 +7,19 @@ server {
   index index.html;
   
 	server_name ${NGINX_HOST};
-
-	location / {
+  
+  location / {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ =404;
+	  try_files $uri $uri/ =404;
 	}
-  
-  location /apl {
-		#limit_conn addr 10;
-    #limit_req zone=one burst=3;
 
-		proxy_pass http://${APL_CONTAINER_NAME}:${APL_API_PORT}/apl;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-  location /dash/ {
-		#limit_conn addr 10;
-    #limit_req zone=one burst=3;
-
-    proxy_pass http://${DASH_CONTAINER_NAME}:${DASH_API_PORT}/insight-api/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-	location /dgb/ {
-    proxy_pass http://localhost:3000/insight-api/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-	location /doge/ {
-    proxy_pass http://localhost:3100/api/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade; 
-  }
-
-	location /grs/ {
-    proxy_pass http://localhost:3030/insight-api/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-	location /ltc/ {
-    proxy_pass http://localhost:3002/insight-lite-api/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-
-	location /pricer/ {
-    proxy_pass http://localhost:3003/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
+  #${APL_LOCATION}
+  #${BCH_LOCATION}
+  #${DASH_LOCATION}
+  #${DGB_LOCATION}
+  #${DOGE_LOCATION}
+  #${GRS_LOCATION}
+  #${LTC_LOCATION}
 }
+
