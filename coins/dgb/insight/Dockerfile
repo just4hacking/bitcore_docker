@@ -5,7 +5,7 @@ WORKDIR /root
 RUN apt-get update \
     && git clone https://github.com/DigiByte-Core/insight-api \
     && cd insight-api \
-    && npm install bignum@0.13.0 --save \ 
+    && npm install bignum@0.9.3 --save \
     && npm install
 
 VOLUME ["/data"]
