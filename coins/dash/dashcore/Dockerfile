@@ -29,12 +29,10 @@ ENV DASH_API_PORT ${DASH_API_PORT}
 
 #RUN sed -i -e 's/${DASH_API_PORT}/'"${DASH_API_PORT}"'/g' /root/mynode/dashcore-node.json
 
-COPY node.conf /root
+COPY node.conf /root/.dashcore/dash.conf
 
 WORKDIR /root/mynode
 CMD [ "dashcore-node", "start" ]
 
 EXPOSE ${DASH_API_PORT}
-
-EXPOSE 9998 9999 19998 19999
 
