@@ -12,6 +12,7 @@ RUN apt-get update \
 VOLUME ["/data"]
 
 #COPY digibyte-node.json /root/mynode/digibyte-node.json
+ENV INSIGHT_FORCE_RPC_SYNC 1
 
 WORKDIR /root/insight-api
 CMD [ "node", "insight.js" ]

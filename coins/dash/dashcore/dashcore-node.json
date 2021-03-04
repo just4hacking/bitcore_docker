@@ -1,5 +1,5 @@
 {
-  "network": "testnet",
+  "network": "livenet",
   "port": 3000,
   "services": [
     "@dashevo/insight-api",
