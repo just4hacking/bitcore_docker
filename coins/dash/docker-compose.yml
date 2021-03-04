@@ -1,6 +1,9 @@
 version: '3'
 services:
   dashcore:
+    ports: 
+      - 9999:9999
+      - 127.0.0.1:9998:9998
     build:
       context: ${PWD}/coins/dash/dashcore
       dockerfile: Dockerfile
