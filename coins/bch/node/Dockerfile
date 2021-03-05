@@ -6,16 +6,16 @@ RUN apt update \
 WORKDIR /root
 
 RUN wget https://www.bitcoinunlimited.info/downloads/bch-unlimited-1.9.0.1-linux64.tar.gz \
-    && tar xvf bch-unlimited-1.9.0.1-linux64.tar.gz
+    && tar xvf bch-unlimited-1.9.1.0-linux64.tar.gz
 
-ENV PATH /root/bch-unlimited-1.9.0.1/bin:$PATH
+ENV PATH /root/bch-unlimited-1.9.*.*/bin:$PATH
 
 # Create the data volume.
 VOLUME ["/data"]
 
 COPY node.conf /root
 
-WORKDIR /root/bch-unlimited-1.9.0.1/bin
+WORKDIR /root/bch-unlimited-1.9.1.0/bin
 # Set the start command. This starts bchd with
 # flags to save the blockchain data and the
 # config on a docker volume.
