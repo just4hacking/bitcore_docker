@@ -9,7 +9,7 @@ services:
     environment: 
       - NODE_ENV=production
       - INSIGHT_PORT=3000
-      - INSIGHT_NETWORK=mainnet
+      - INSIGHT_NETWORK=livenet
       - BITCOIND_USER=user
       - BITCOIND_PASS=password
       - INSIGHT_PUBLIC_PATH=public

@@ -1,0 +1,20 @@
+Hi Sergey,
+
+That's great news!
+As per here: https://www.dgbwiki.com/index.php?title=Running_your_own_Insight_explorer
+~~~
+Now that we have it downloaded, we want to install the other prerequisites:
+npm install
+Then we're going to sync insight with DigiByte Core. We do this manually on first-run, as it won't resume unless it's 97% sync'd
+~/insight/node_modules/insight-bitcore-api/util/sync.js -D -v --rpc
+-D tells it to delete the existing data (There shouldn't be any anyways, but in case there's been an issue and you're running this a second time around...)
+-v tells it to be verbose
+--rpc tells it to use RPC, rather than the index files
+This process will likely take 12+ hours, depending on your CPU.
+Once completed, you should still be in ~/insight, and so can simply run:
+node start
+~~~
+
+Let me know how that goes :)
+
+Cheers
