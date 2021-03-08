@@ -14,3 +14,13 @@
 
 ## to see log
 `docker logs loadbalancer -f`
+
+## how to make changes to a running rontainer?
+
+make changes to config/nginx.conf file
+
+to check if changes are correct run
+`docker container exec load-balancer_nginx_1 nginx -t`
+
+then reload the nginx server by typing
+`docker container exec load-balancer_nginx_1 -s reload`
