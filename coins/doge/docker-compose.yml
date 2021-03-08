@@ -17,6 +17,8 @@ services:
       
     depends_on:
       - doge_node
+    networks:
+      - doge_network
     restart: always
 
   doge_node:
