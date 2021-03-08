@@ -24,7 +24,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 #restart on reboot
 #RUN systemctl enable nginx
 
-CMD [ "nginx", "-g", "daemon off" ]
+CMD [ "nginx", "-g", "daemon off;" ]
 
 EXPOSE 80
 EXPOSE 443
