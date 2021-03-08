@@ -9,5 +9,8 @@
 ## build the load balancer image
 `docker image build .  -t loadbalancer`
 
-## run it
+## run it!
 `docker container run -d --restart unless-stopped -p 80:80 -p 443:443 --name loadbalancer loadbalancer`
+
+## to see log
+`docker logs loadbalancer -f`
