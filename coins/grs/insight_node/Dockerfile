@@ -23,6 +23,7 @@ ENV INSIGHT_FORCE_RPC_SYNC 1
 
 COPY node.conf /root
 COPY start.sh /root
+COPY start_insight.sh /root
 
 # Create the data volume.
 VOLUME ["/data"]
