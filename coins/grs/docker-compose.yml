@@ -1,12 +1,9 @@
 version: '3'
 services:
-  #I don't know why, but insight can't connect to grs node if it's not localhost, so I combined them
-  insight_node:
+  grs_insight:
     build:
-      context: ${PWD}/coins/grs/insight_node
+      context: ${PWD}/coins/grs/insight
       dockerfile: Dockerfile
-    volumes: 
-      - ${DATA_DIR}/grs/blockchain:/data
     networks:
       - grs_network
     environment: 
@@ -15,10 +12,22 @@ services:
       - BITCOIND_USER=user
       - BITCOIND_PASS=password
       - INSIGHT_PUBLIC_PATH=public
-      - BITCOIND_HOST=localhost
-      - BITCOIND_P2P_HOST=localhost
+      - BITCOIND_HOST=grs_node
+      - BITCOIND_P2P_HOST=grs_node
       - BITCOIND_P2P_PORT=30008
       - BITCOIND_PORT=30009
+    depends_on:
+      - grs_node
+    restart: always
+
+  grs_node:
+    build:
+      context: ${PWD}/coins/grs/node
+      dockerfile: Dockerfile
+    volumes: 
+      - ${DATA_DIR}/grs/blockchain:/data
+    networks:
+      - grs_network
     restart: always
     
   nginx:
@@ -31,7 +40,7 @@ services:
     environment: 
       NGINX_HOST: _
       GRS_LOCATION: |-
-        #
+        
         location /grs/ {
           proxy_pass http://insight_node:3000/api/;
         }
@@ -40,6 +49,8 @@ services:
       - ${PWD}/.env
     networks: 
       - grs_network
+    depends_on: 
+      - grs_insight
 
 networks:
   grs_network:
