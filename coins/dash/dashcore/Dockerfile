@@ -1,8 +1,9 @@
 FROM ubuntu:20.04
 
 RUN apt update -y \ 
+    && DEBIAN_FRONTEND="noninteractive" apt -y install tzdata \
     && apt upgrade -y \
-    && apt install npm build-essential libzmq3-dev -y
+    && apt install npm build-essential libzmq3-dev wget git -y
 
 WORKDIR /root
 
