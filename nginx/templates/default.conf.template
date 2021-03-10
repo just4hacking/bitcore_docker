@@ -21,5 +21,7 @@ server {
   #${DOGE_LOCATION}
   #${GRS_LOCATION}
   #${LTC_LOCATION}
+  
+  #${PRICER_LOCATION}
 }
 

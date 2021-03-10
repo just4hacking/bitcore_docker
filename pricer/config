@@ -1,0 +1,3 @@
+Host github.com-pricer
+Hostname github.com
+IdentityFile=/root/pricer_ssh_pull_key
