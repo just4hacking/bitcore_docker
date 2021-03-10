@@ -14,7 +14,8 @@ services:
       - BITCOIND_P2P_HOST=doge_node
       - BITCOIND_P2P_PORT=30008
       - BITCOIND_PORT=30009
-      
+    volumes: 
+      - ${DATA_DIR}/doge/db:/data
     depends_on:
       - doge_node
     networks:

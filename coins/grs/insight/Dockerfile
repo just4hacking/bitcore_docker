@@ -10,6 +10,9 @@ RUN apt update -y \
 
 ENV INSIGHT_PORT 3000
 ENV INSIGHT_FORCE_RPC_SYNC 1
+ENV INSIGHT_DB /data
+
+VOLUME ["/data"]
 
 #COPY config.js /root/insight/node_modules/insight-bitcore-api/config/config.js
 

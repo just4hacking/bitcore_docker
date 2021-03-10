@@ -15,6 +15,9 @@ RUN git clone https://github.com/rnicoll/insight-api-dogecoin insight-api \
     
 ENV INSIGHT_PORT 3000
 ENV INSIGHT_FORCE_RPC_SYNC 1
+ENV INSIGHT_DB /data
+
+VOLUME ["/data"]
 
 WORKDIR /root/insight-api
 
