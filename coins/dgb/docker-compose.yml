@@ -17,6 +17,8 @@ services:
       - BITCOIND_P2P_HOST=dgb_node
       - BITCOIND_P2P_PORT=30008
       - BITCOIND_PORT=30009
+    volumes: 
+      - ${DATA_DIR}/dgb/db:/data
     depends_on:
       - dgb_node
     restart: always

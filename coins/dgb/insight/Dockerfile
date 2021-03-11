@@ -1,20 +1,17 @@
-FROM node:0.10.48
+FROM node:10.17.0
 
 WORKDIR /root
 
 RUN apt-get update \
-    && git clone https://github.com/DigiByte-Core/insight-api \
-    && cd insight-api \
-    && npm install bitcore@0.1.41 --save \
-    && npm install bignum@0.9.3 --save \
+    && git clone https://github.com/DigiByte-Core/insight \
+    && cd insight \
     && npm install
 
 VOLUME ["/data"]
 
-#COPY digibyte-node.json /root/mynode/digibyte-node.json
 ENV INSIGHT_FORCE_RPC_SYNC 1
 
-WORKDIR /root/insight-api
-CMD [ "node", "insight.js" ]
+WORKDIR /root/insight
+CMD [ "npm", "start" ]
 
 EXPOSE 3000
