@@ -5,17 +5,17 @@ RUN apt update \
 
 WORKDIR /root
 
-RUN wget https://www.bitcoinunlimited.info/downloads/bch-unlimited-1.9.1.0-linux64.tar.gz \
-    && tar xvf bch-unlimited-1.9.*.*-linux64.tar.gz
+RUN wget https://github.com/Bitcoin-ABC/bitcoin-abc/releases/download/v0.22.15/bitcoin-abc-0.22.15-x86_64-linux-gnu.tar.gz \
+    && tar xvf bitcoin-abc-0.22.15-x86_64-linux-gnu.tar.gz
 
-ENV PATH /root/bch-unlimited-1.9.1.0/bin:$PATH
+ENV PATH /root/bitcoin-abc-0.22.15/bin:$PATH
 
 # Create the data volume.
 VOLUME ["/data"]
 
 COPY node.conf /root
 
-WORKDIR /root/bch-unlimited-1.9.1.0/bin
+WORKDIR /root/bitcoin-abc-0.22.15/bin
 # Set the start command. This starts bchd with
 # flags to save the blockchain data and the
 # config on a docker volume.
