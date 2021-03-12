@@ -7,17 +7,18 @@ WORKDIR /root
 
 #bitcoin cash is split into two changes bcha and bchn. bchn is legacy one
 #bitcoin cash client doesnt support bchn since 0.22.10, so be careful
-RUN wget https://download.bitcoinabc.org/bchn/0.22.7/linux/bitcoin-abc-0.22.7-x86_64-linux-gnu.tar.gz \
-    && tar xvf bitcoin-abc-0.22.7-x86_64-linux-gnu.tar.gz
+RUN wget https://github.com/bitcoin-cash-node/bitcoin-cash-node/releases/download/v22.2.0/bitcoin-cash-node-22.2.0-x86_64-linux-gnu.tar.gz \
+    && mkdir bitcoin-cash-node \
+    && tar xvf bitcoin-cash-node-22.2.0-x86_64-linux-gnu.tar.gz
 
-ENV PATH /root/bitcoin-abc-0.22.7/bin:$PATH
+ENV PATH /root/bitcoin-cash-node-22.2.0/bin:$PATH
 
 # Create the data volume.
 VOLUME ["/data"]
 
 COPY node.conf /root
 
-WORKDIR /root/bitcoin-abc-0.22.7/bin
+WORKDIR /root/bitcoin-cash-node-22.2.0/bin
 # Set the start command. This starts bchd with
 # flags to save the blockchain data and the
 # config on a docker volume.
