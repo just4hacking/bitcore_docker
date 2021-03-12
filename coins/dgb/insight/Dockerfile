@@ -9,7 +9,9 @@ RUN apt-get update \
 
 VOLUME ["/data"]
 
+ENV INSIGHT_PORT 3000
 ENV INSIGHT_FORCE_RPC_SYNC 1
+ENV INSIGHT_DB /data
 
 WORKDIR /root/insight
 CMD [ "npm", "start" ]
