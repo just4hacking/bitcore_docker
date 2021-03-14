@@ -4,6 +4,9 @@ http://localhost:8080/apl/?requestType=getState
 ###BITCOIN CASH
 http://localhost:8080/bch/mainnet/block/tip
 
+###BITCOIN CASH (alternative)
+http://localhost:8080/api/BCH/mainnet/block/tip
+
 ###DASH
 http://localhost:8080/dash/sync
 

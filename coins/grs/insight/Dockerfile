@@ -3,6 +3,7 @@ FROM node:0.10.48
 WORKDIR /root
 
 RUN apt update -y \
+    && install cron -y \
     && git clone https://github.com/GroestlCoin/insight \
     && cd insight \
     && npm install async@0.9.2 \

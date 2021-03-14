@@ -45,7 +45,11 @@ services:
       NGINX_HOST: _
       BCH_LOCATION: |-
         #
-        location /bch/ {
+        location ~* ^/api/BCH/(.*)$ {
+          return 301 /bch/$1;
+        }
+
+        location ~ /bch/ {
           proxy_pass http://bch_bitcore:3000/api/BCH/;
         }
     restart: always
