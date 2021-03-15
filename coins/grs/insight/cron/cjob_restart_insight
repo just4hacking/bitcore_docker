@@ -1,0 +1,11 @@
+
+# grs insight doesn't synchronize with grs node automatically for some reason
+# it synchronizes node only at start up time
+# as a workaround I implemented a cronjob that restarts service automatically every 5 minutes
+# the restart process is fast so it doesn't affect perfomace too much
+
+# TEST
+#* * * * * echo "Hello, world" >> /root/test.txt
+
+
+*/5 * * * * echo "RESTARTING INSIGHT API TO SYNCHRONIZE" >> /dev/stdout && kill -9 $(pgrep -f insight)
