@@ -8,17 +8,17 @@ services:
       - dgb_network
     environment: 
       - NODE_ENV=production
-      - INSIGHT_PORT=3000
-      - INSIGHT_NETWORK=livenet
-      - BITCOIND_USER=user
-      - BITCOIND_PASS=password
-      - INSIGHT_PUBLIC_PATH=public
-      - BITCOIND_HOST=dgb_node
-      - BITCOIND_P2P_HOST=dgb_node
-      - BITCOIND_P2P_PORT=30008
-      - BITCOIND_PORT=30009
+      - DIGIEXPLORER_PORT=3000
+      - DIGIEXPLORER_NETWORK=livenet
+      - DIGIBYTED_USER=user
+      - DIGIBYTED_PASS=password
+      - DIGIEXPLORER_PUBLIC_PATH=public
+      - DIGIBYTED_HOST=dgb_node
+      - DIGIBYTED_P2P_HOST=dgb_node
+      - DIGIBYTED_P2P_PORT=30008
+      - DIGIBYTED_PORT=30009
     volumes: 
-      - ${DATA_DIR}/dgb/db:/data
+      - ${DATA_DIR}/dgb:/data
     depends_on:
       - dgb_node
     restart: always
