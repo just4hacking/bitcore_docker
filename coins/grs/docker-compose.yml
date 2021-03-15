@@ -17,7 +17,7 @@ services:
       - BITCOIND_P2P_PORT=30008
       - BITCOIND_PORT=30009
     volumes: 
-      - ${DATA_DIR}/grs/db:/data
+      - ${DATA_DIR}/grs:/data
     depends_on:
       - grs_node
     restart: always
